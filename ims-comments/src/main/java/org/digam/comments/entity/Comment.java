@@ -1,6 +1,8 @@
 package org.digam.comments.entity;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,25 +12,27 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Comment {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
+	// @NotNull
 	@Size(min = 1, max = 20)
 	private String text;
-	@NotNull
+	// @NotNull
 	private Long byUser;
 	private Long forIssue;
 	private LocalDateTime created;
 
-	public Comment(Long id, String text, Long byUser, Long forIssue, LocalDateTime created) {
+	public Comment(Long id, String text, Long byUser, Long forIssue) {
 		this.id = id;
 		this.text = text;
 		this.byUser = byUser;
 		this.forIssue = forIssue;
-		this.created = created;
+		this.created = LocalDateTime.now();
+	}
+
+	public Comment() {
 	}
 
 	public Long getId() {
@@ -72,9 +76,34 @@ public class Comment {
 	}
 
 	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 61 * hash + Objects.hashCode(this.id);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Comment other = (Comment) obj;
+		if (!Objects.equals(this.id, other.id)) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", text=" + text + ", byUser=" + byUser + ", forIssue=" + forIssue + ", created="
-				+ created + "]";
+		return "Comment{" + "id=" + id + ", text=" + text + ", byUser=" + byUser + ", forIssue=" + forIssue
+				+ ", created=" + created + '}';
 	}
 
 }

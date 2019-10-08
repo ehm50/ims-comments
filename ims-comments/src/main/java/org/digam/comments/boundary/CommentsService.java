@@ -20,7 +20,7 @@ public class CommentsService {
 	private EntityManager em;
 
 	private FindUserName findUserName;
-
+	
 	@Inject
 	public void setFindUserName(FindUserName userName) {
 		this.findUserName = userName;

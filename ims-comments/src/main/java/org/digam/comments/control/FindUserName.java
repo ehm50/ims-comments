@@ -12,7 +12,7 @@ public class FindUserName {
 		Client client = ClientBuilder.newBuilder().connectTimeout(500, TimeUnit.MICROSECONDS)
 				.readTimeout(700, TimeUnit.MICROSECONDS).build();
 		try {
-			JsonObject userJson = client.target("http://ims-users:8080/ims-users/resources/users/{id}")
+			JsonObject userJson = client.target("http://localhost:8080/ims-users/resources/users/{id}")
 					.resolveTemplate("id", byUser).request().get(JsonObject.class);
 
 			return userJson.getString("name");

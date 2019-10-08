@@ -1,15 +1,15 @@
 package org.digam.comments.entity;
 
 public class CommentInfo {
+
 	private Comment comment;
 	private String byUserName;
 
-	public CommentInfo(Comment comment) {
-		super();
-		this.comment = comment;
+	public CommentInfo() {
 	}
 
-	public CommentInfo() {
+	public CommentInfo(Comment c) {
+		this.comment = c;
 	}
 
 	public Comment getComment() {
@@ -27,4 +27,5 @@ public class CommentInfo {
 	public void setByUserName(String byUserName) {
 		this.byUserName = byUserName;
 	}
+
 }
